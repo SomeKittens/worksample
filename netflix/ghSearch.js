@@ -76,6 +76,11 @@ require('./ng')
       .then(resp => {
         ghSearch.current.commit.details = resp.data;
       });
+    },
+    clearData: () => {
+      ghSearch.current.user = null;
+      ghSearch.current.repo = null;
+      ghSearch.current.commit = null;
     }
   };
 
