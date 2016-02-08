@@ -15,10 +15,6 @@ This'll start up all the machinery & open your browser to the home page.  Pick y
 
 I'll try to get things up and running on github pages, but no promises*.
 
-There's a symlink that git might "forget" so if you don't succeed the first time, cd into `common` and run:
-
-`ln -s ../node_modules/bootstrap-sass/assets .`
-
 ## SourceDNA
 
 Data's in .gitignore, so you'll need to clone this and unzip the data into `sdna/data`.  Everything should work after that.
