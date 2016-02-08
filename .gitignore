@@ -1,0 +1,7 @@
+node_modules/*
+npm-debug.log
+
+# SourceDNA data files
+data_20151021.json
+data_20151222.json
+data_20160120.json

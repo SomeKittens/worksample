@@ -1,0 +1,51 @@
+doctype html
+html(lang='en')
+  head
+    //- Sets title/name for further use
+    block vars
+    title= title
+
+    //- CSS & style stuffs
+    link(rel='stylesheet', href='css/#{name}.css')
+    link(rel='shortcut icon', href='img/#{name}/favicon.ico', type='image/x-icon')
+
+    //- SEO things?
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='copyright', content='This work sample demo is copyright Randall Koutnik, 2016')
+    meta(name='description', content='Work Sample demo by Randall Koutnik')
+    meta(name='robots', content='index/follow')
+
+    meta(property='og:title', content='#{title}')
+    meta(property='og:image', content='img/#{name}/favicon.ico')
+    meta(property='og:site_name', content='Randall Koutnik Work Sample')
+    //- meta(property='og:url', content='')
+    //- meta(property='og:description', content='')
+    meta(property='og:locale', content='en_US')
+    meta(property='article:author', content='https://www.facebook.com/randall.koutnik')
+
+  body(ng-app='#{name}')
+    if name !== 'home'
+      .loading-screen(loading-screen)
+        .loading-content
+          noscript
+            p This site requires javascript to function.
+            p Please enable javascript and reload.
+          img.loading-img(src='img/#{name}/logo.png')
+          p.loading-text(ng-hide='true') Loading...
+          p.loading-text(ng-cloak) {{ load.message }}
+
+      nav.navbar.navbar-default
+        .container-fluid
+          // Brand and toggle get grouped for better mobile display
+          .navbar-header
+            a.navbar-brand
+              img.logo(src='img/#{name}/logo.png')
+          block navbar
+
+    .container-fluid
+      block content
+
+    footer
+      .text &copy; 2016 Randall Koutnik
+      //- TODO a(href='https://github.com/SomeKittens/Node-Blog-Engine') View Source
+    script(src='#{name}.js')

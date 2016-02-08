@@ -1,0 +1,37 @@
+.section-title
+  h3 Commit Viewer
+
+  h4.message(ng-if='!$ctrl.ghData.commit') Please select a commit
+  h4.message(ng-if='$ctrl.ghData.repo.commits && !$ctrl.ghData.repo.commits.length') This repo has no commits
+
+
+div.commit-details(ng-if='$ctrl.ghData.commit')
+
+  h4 Details
+  .row
+    .col-xs-2 Commiter:
+    .col-xs-8
+      a(ng-href='{{ $ctrl.ghData.commit.committer.url }}') {{ $ctrl.ghData.commit.committer.login }}
+  .row
+    .col-xs-2 Author:
+    .col-xs-8
+      a(ng-href='{{ $ctrl.ghData.commit.author.url }}') {{ $ctrl.ghData.commit.author.login }}
+  .row
+    .col-xs-2 Message:
+    .col-xs-8 {{ $ctrl.ghData.commit.commit.message }}
+  .row
+    .col-xs-2 sha:
+    .col-xs-8 {{ $ctrl.ghData.commit.sha }}
+  .row
+    .col-xs-2 sha:
+    .col-xs-8 {{ $ctrl.ghData.commit.sha }}
+
+  br
+  a(ng-href='{{ $ctrl.ghData.commit.url }}') View this commit on GitHub
+
+  loading-heartbeat(show='$ctrl.ghData.commit && !$ctrl.ghData.commit.details')
+
+  h4 Diff
+
+  pre(ng-repeat='file in $ctrl.ghData.commit.details.files')
+    | {{ file.patch }}

@@ -1,0 +1,23 @@
+.row.selection-tables
+  .col-xs-2.section
+    .section-title
+      h3 Vendors
+    .vendors
+      .vendor(
+        ng-repeat='vendor in RC.vendors | orderBy:\'name\''
+        ng-click='RC.pickVendor(vendor)'
+      )
+        a.btn.btn-default(
+          ng-class='{\'btn-primary\': RC.selected === vendor}'
+        ) {{ vendor.name }}
+  .col-xs-10.section
+    .removers
+      .remover(ng-repeat='(app, removers) in RC.removed track by $index')
+        h3.sdk-title {{ RC.idToName[app] }}
+        table.table.table-striped(ng-show='removers.length')
+          tr(ng-repeat='remover in removers track by $index')
+            td
+              img.app-img(ng-src='{{ remover.iconUrl }}')
+            td.app-title-container
+              h5.app-title {{ remover.name }}
+        div(ng-show='!removers.length') Hurrah, no one removed your app!

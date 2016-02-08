@@ -1,0 +1,11 @@
+{
+  "files": [{
+    "match": [ "dist/*.{html,htm,css,js,jade,sass,scss}", "!node_modules/**/*.*" ]
+  }],
+  "server": {
+    "baseDir": "./dist",
+    "middleware": {
+      "0": null
+    }
+  }
+}

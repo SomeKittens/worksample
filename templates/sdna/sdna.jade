@@ -1,0 +1,18 @@
+extends ../layout
+
+block vars
+  - var title = 'SourceDNA Data Inspector';
+  - var name = 'sdna';
+
+block content
+  div(ui-view)
+
+block navbar
+  div.navbar-collapse.collapse
+    ul.nav.navbar-nav
+      li(ui-sref-active='active')
+        a(ui-sref='app.adoption') Competitive Intelligence
+      li(ui-sref-active='active')
+        a(ui-sref='app.removers') SDK Removals
+      li(ui-sref-active='active')
+        a(ui-sref='app.features') Prospective Features

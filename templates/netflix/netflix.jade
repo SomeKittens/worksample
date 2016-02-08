@@ -1,0 +1,16 @@
+extends ../layout
+
+block vars
+  - var title = 'GitHub Data Inspector';
+  - var name = 'netflix';
+
+block content
+  .row.selection-tables
+    .col-xs-2.section
+      search-display
+    .col-xs-2.section
+      repo-selector
+    .col-xs-3.section
+      commit-selector
+    .col-xs-5.section
+      commit-viewer

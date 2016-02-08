@@ -1,0 +1,32 @@
+.row.selection-tables
+  .col-xs-2.section
+    .section-title
+      // Today's hack brought to you by the letter V
+      h3 Verticals
+    .verticals
+      .vertical(
+        ng-repeat='vertical in AC.verticals | orderBy:\'name\''
+        ng-click='AC.pickVertical(vertical)'
+      )
+        a.btn.btn-default(
+          ng-class='{\'btn-primary\': AC.selected === vertical}'
+        ) {{ vertical.name }}
+    .section-title
+      h3 Vendors
+    .vendors
+      .vendor(
+        ng-repeat='vendor in AC.vendors | orderBy:\'name\''
+        ng-click='AC.pickVendor(vendor)'
+      )
+        a.btn.btn-default(
+          ng-class='{\'btn-primary\': AC.selected === vendor}'
+        ) {{ vendor.name }}
+  .col-xs-10.section
+    .row(ng-if='AC.type === \'vertical\'')
+      .col-xs-6
+        sdk-over-time.graph(vertical='AC.selected')
+      .col-xs-6
+        vendor-over-time.graph(vertical='AC.selected')
+    .row(ng-if='AC.type === \'vendor\'')
+      .col-xs-12
+        vendor-sdk-over-time.graph(vendor='AC.selected')

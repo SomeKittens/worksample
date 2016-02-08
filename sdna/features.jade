@@ -1,0 +1,19 @@
+.row.selection-tables
+  .col-xs-2.section
+    .section-title
+      h3 Vendors
+    .vendors
+      .vendor(
+        ng-repeat='vendor in FC.vendors | orderBy:\'name\''
+        ng-click='FC.pickVendor(vendor)'
+      )
+        a.btn.btn-default(
+          ng-class='{\'btn-primary\': FC.selected === vendor}'
+        ) {{ vendor.name }}
+  .col-xs-10.section.common
+    .row.title
+      .col-xs-12
+        h2 SDKs commonly found with
+    .row.graphs
+      .col-xs-6.graph-features(ng-repeat='(name, common) in FC.common')
+        common-sdk-graph.graph(sdk-name='name' common-sdks='common')

@@ -1,0 +1,40 @@
+@mixin wh () {
+  width: 100%;
+  height: 100%;
+}
+
+html, body {
+  @include wh();
+}
+
+.container-fluid {
+  height: calc(100% - 30px);
+}
+
+.home-nav-container {
+  @include wh();
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+
+  .home-nav {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-around;
+    align-items: center;
+
+    .home-nav-btn {
+      display: inline-block;
+      width: 45%;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      padding: 5px;
+      height: 79px;
+
+      .logo {
+        @include wh();
+      }
+    }
+  }
+}

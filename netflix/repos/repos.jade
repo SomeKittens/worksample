@@ -1,0 +1,55 @@
+.section-title
+  h3 Repo Selection
+
+  h4.message(ng-if='!$ctrl.ghData.user') Please select a user
+  h4.message(ng-if='$ctrl.ghData.user.repos && !$ctrl.ghData.user.repos.length') This user has no repos
+
+loading-heartbeat(show='$ctrl.ghData.user && !$ctrl.ghData.user.repos')
+
+div(ng-if='$ctrl.ghData.user.repos.length')
+  | Sort by:
+  .dropdown(uib-dropdown)
+    button.btn.btn-default.dropdown-toggle(
+      uib-dropdown-toggle
+      type='button'
+      data-toggle='dropdown'
+      aria-haspopup='true'
+      aria-expanded='true'
+    ) {{ $ctrl.getHumanSort() + ' '}}
+      span.caret
+    ul.dropdown-menu(
+      uib-dropdown-menu
+    )
+      li
+        a(ng-click='$ctrl.sortBy = \'-forks_count\'') # Forks
+      li
+        a(ng-click='$ctrl.sortBy = \'-open_issues\'') Open Issues
+      li
+        a(ng-click='$ctrl.sortBy = \'-stargazers_count\'') Stars
+      li
+        a(ng-click='$ctrl.sortBy = \'-watchers\'') Watchers
+      li
+        a(ng-click='$ctrl.sortBy = \'name\'') A -&gt; Z
+      li
+        a(ng-click='$ctrl.sortBy = \'-name\'') Z -&gt; A
+
+
+.item-list
+  .row.item(
+    ng-repeat-start='repo in $ctrl.ghData.user.repos | orderBy:$ctrl.sortBy'
+    ng-click='$ctrl.selectRepo(repo)'
+    ng-class='{selected: $ctrl.ghData.repo === repo}'
+  )
+    .row
+      .col-xs-12
+        h4.reponame {{ repo.name }}
+    .row
+      .col-xs-6 Forks: {{ repo.forks_count }}
+      .col-xs-6 Issues: {{ repo.open_issues}}
+    .row
+      .col-xs-6 Stars: {{ repo.stargazers_count }}
+      .col-xs-6 Watchers: {{ repo.watchers }}
+  hr(
+    ng-if='::!$last'
+    ng-repeat-end
+  )

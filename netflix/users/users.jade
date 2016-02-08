@@ -1,0 +1,46 @@
+.section-title
+  h3 User Search
+  h4.message(ng-if='!$ctrl.searching && !$ctrl.results.length && $ctrl.currentSearch') No results found
+  h4.message(ng-if='!$ctrl.currentSearch')
+
+input.form-control(
+  placeholder='Netflix, SomeKittens, etc'
+  ng-model='$ctrl.currentSearch'
+  ng-model-options='{debounce: 333}'
+)
+
+.dropdown(uib-dropdown)
+  button.btn.btn-default.dropdown-toggle(
+    uib-dropdown-toggle
+    type='button'
+    data-toggle='dropdown'
+    aria-haspopup='true'
+    aria-expanded='true'
+  ) {{ ($ctrl.type || 'Users and Org') + 's '}}
+    span.caret
+  ul.dropdown-menu(
+    uib-dropdown-menu
+  )
+    li(ng-click='$ctrl.type = \'\'')
+      a Users &amp; Orgs
+    li(ng-click='$ctrl.type = \'Org\'')
+      a Orgs
+    li(ng-click='$ctrl.type = \'User\'')
+      a Users
+
+loading-heartbeat(show='$ctrl.currentSearch && !$ctrl.results')
+
+.item-list
+  .row.item(
+    ng-repeat-start='user in $ctrl.results'
+    ng-click='$ctrl.selectUser(user)'
+    ng-class='{selected: $ctrl.ghData.user === user}'
+  )
+    .col-xs-3
+      img.gh-logo(ng-src='{{ user.avatar_url }}')
+    .col-xs-9.username-container
+      h4.username {{ user.login }}
+  hr(
+    ng-if='::!$last'
+    ng-repeat-end
+  )

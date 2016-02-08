@@ -1,0 +1,87 @@
+@import 'header';
+@import 'footer';
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+.container-fluid {
+  height: calc(100% - 72px - 29px);
+}
+
+// Hides stuff until Angular is loaded
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+// From UI-Boostrap
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+// For hiding the loader when we don't want it
+.hidden {
+  display: none !important;
+}
+
+.selection-tables {
+  height: 100%;
+}
+.section {
+  height: 100%;
+  overflow: scroll;
+
+  &:not(:last-child) {
+    border-right: 1px solid #aaa;
+  }
+}
+
+.section-title {
+  text-align: center;
+  h3 {
+    text-decoration: underline;
+  }
+  .message {
+    color: #777;
+  }
+}
+
+
+// TODO: move into sass
+// Loading spinner
+@keyframes beat {
+  20% {
+    transform: scale(1.2);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+.loading-screen {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(225, 225, 225, 0.8);
+  display: flex;
+  align-items: center;
+  z-index: 999;
+
+  .loading-content {
+    max-width: 400px;
+    margin: auto;
+    color: black;
+    text-align: center;
+
+    .loading-img {
+      margin: auto;
+      max-width: 100%;
+      &.inline {
+        max-width: 80%;
+      }
+      animation: beat 1s infinite linear;
+    }
+
+    .loading-text {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.section-title
+  h3 Commit Selection
+
+  h4.message(ng-if='!$ctrl.ghData.repo') Please select a repo
+  h4.message(ng-if='$ctrl.ghData.repo.commits && !$ctrl.ghData.repo.commits.length') This repo has no commits
+
+loading-heartbeat(show='$ctrl.ghData.repo && !$ctrl.ghData.repo.commits')
+
+.item-list
+  .row.item(
+    ng-repeat-start='commit in $ctrl.ghData.repo.commits'
+    ng-click='$ctrl.selectCommit(commit)'
+    ng-class='{selected: $ctrl.ghData.commit === commit}'
+  )
+    .row
+      .col-xs-12
+        .commit-message {{ commit.commit.message }}
+    .row
+      .col-xs-3 {{ commit.sha.slice(0, 6) }}
+      .col-xs-6 {{ commit.commiter.login }}
+  hr(
+    ng-if='::!$last'
+    ng-repeat-end
+  )
