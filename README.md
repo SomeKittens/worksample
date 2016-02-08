@@ -13,7 +13,7 @@ npm run
 
 This'll start up all the machinery & open your browser to the home page.  Pick your company to see the work sample.  There's a bunch of ES6 stuff in here, so better use Chrome.
 
-I'll try to get things up and running on github-pages, but no promises*.
+I'll try to get things up and running on github pages, but no promises*.
 
 There's a symlink that git might "forget" so if you don't succeed the first time, cd into `common` and run:
 
@@ -25,4 +25,4 @@ Data's in .gitignore, so you'll need to clone this and unzip the data into `sdna
 
 
 
-* But I thought you said there was ES6 stuff, hyuk hyuk
+\* But I thought you said there was ES6 stuff, hyuk hyuk
